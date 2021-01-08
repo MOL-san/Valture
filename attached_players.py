@@ -105,10 +105,10 @@ def sakura3(t=[], p={}, p2={}, name=""):  # 15,-5についてカードを設定
     return random.choice(small)
 
 
-def person(t=[], p1={}, p2={}, name=""):  # 人用
+def human(t=[], p1={}, p2={}, name=""):  # 人用
     if name:
-        return "PERSON"
+        return input("名前:")
 
-    print(", ".join(map(str, p1["card"])))
+    print("持ち札:" + ", ".join(map(str, p1["card"])))
     choice_card = input("card: ")
     return int(choice_card)

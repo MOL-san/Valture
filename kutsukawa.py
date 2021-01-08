@@ -12,7 +12,7 @@ def analysis():
     matches = 10000
 
     for i in range(matches):
-        log = game(p1, p2, False)
+        log = game(p1, p2,p1(name="name"),p2(name="name"), False)
 
         win = 2
         if log[-4] == 1:

@@ -20,7 +20,7 @@ def print_table(table, player1, player2):  # 状況表示
     print()
 
 
-def game(p1, p2, print_board=True):  # 本体
+def game(p1, p2, p1_name, p2_name, print_board=True):  # 本体
     if not print_board:
         sys.stdout = io.StringIO()
 
@@ -34,8 +34,8 @@ def game(p1, p2, print_board=True):  # 本体
     p1_card = list(range(1, 16))
     p2_card = list(range(1, 16))
 
-    player1 = {"card": copy.copy(p1_card), "point": 0, "name": p1(name="name")}
-    player2 = {"card": copy.copy(p2_card), "point": 0, "name": p2(name="name")}
+    player1 = {"card": copy.copy(p1_card), "point": 0, "name": p1_name}
+    player2 = {"card": copy.copy(p2_card), "point": 0, "name": p2_name}
 
     print("=====================================")
     print("ゲーム開始")
@@ -149,7 +149,7 @@ if __name__ == "__main__":
     # 統計を取る
 
     # プレイヤーの設定
-    p1_func = person
+    p1_func = human
     p2_func = kutsu1
     P1_NAME = p1_func(name="name")
     P2_NAME = p2_func(name="name")
@@ -166,7 +166,7 @@ if __name__ == "__main__":
               ":", "DRAW".ljust(l) + ":"]
 
     for i in range(MATCHES):
-        result[game(p1_func, p2_func, SHOW_GAME)[-4]] += 1
+        result[game(p1_func, p2_func,P1_NAME,P2_NAME, SHOW_GAME)[-4]] += 1
 
         if SHOW_PROGRESS:
             os.system("clear")
