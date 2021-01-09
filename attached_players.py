@@ -110,5 +110,6 @@ def human(t=[], p1={}, p2={}, name=""):  # 人用
         return input("名前:")
 
     print("持ち札:" + ", ".join(map(str, p1["card"])))
+    print("相手の持ち札:" + ", ".join(map(str, p2["card"])))
     choice_card = input("card: ")
     return int(choice_card)
