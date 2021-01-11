@@ -1,3 +1,5 @@
+#encoding: utf-8
+
 import random
 
 
@@ -107,9 +109,9 @@ def sakura3(t=[], p={}, p2={}, name=""):  # 15,-5についてカードを設定
 
 def human(t=[], p1={}, p2={}, name=""):  # 人用
     if name:
-        return input("名前:")
+        return raw_input("名前:")
 
-    print("持ち札      :" + ", ".join(map(str, p1["card"])))
-    print("相手の持ち札:" + ", ".join(map(str, p2["card"])))
+    print("持ち札      : " + ", ".join(map(str, p1["card"])))
+    print("相手の持ち札: " + ", ".join(map(str, p2["card"])))
     choice_card = input("card: ")
     return int(choice_card)
