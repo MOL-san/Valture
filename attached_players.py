@@ -113,5 +113,5 @@ def human(t=[], p1={}, p2={}, name=""):  # 人用
 
     print("持ち札      : " + ", ".join(map(str, p1["card"])))
     print("相手の持ち札: " + ", ".join(map(str, p2["card"])))
-    choice_card = input("card: ")
-    return int(choice_card)
+    choice_card = raw_input("card: ")
+    return int(choice_card) if choice_card.isdigit() else choice_card

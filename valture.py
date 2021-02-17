@@ -11,6 +11,8 @@ from colorama import Fore, Back
 
 from attached_players import *
 from kutsukawa import kutsu1
+from aves import *
+from blockly import agent
 
 
 def print_table(table, player1, player2):  # 状況表示
@@ -48,13 +50,12 @@ def game(p1, p2, p1_name, p2_name, print_board=True):  # 本体
         print Fore.GREEN + "Turn " + str(i + 1) + Fore.RESET
         table.append(valtures.pop())
 
-        old_player1 = copy.copy(player1)
-        old_player2 = copy.copy(player2)
 
         print_table(table, player1, player2)
 
         try:
             p1_oper = p1(table, player1, player2)
+            old_player1 = copy.copy(player1)
         except:
             print "{0} エラーにより失格".format(player1["name"])
             print "{0} 勝利".format(player2["name"])
@@ -62,6 +63,7 @@ def game(p1, p2, p1_name, p2_name, print_board=True):  # 本体
             break
         try:
             p2_oper = p2(table, player2, player1)
+            old_player2 = copy.copy(player2)
         except:
             print "{0} エラーにより失格".format(player2["name"])
             print "{0} 勝利".format(player1["name"])
@@ -69,13 +71,13 @@ def game(p1, p2, p1_name, p2_name, print_board=True):  # 本体
             break
 
         if p1_oper not in p1_card or (player2 != old_player2):
-            print "{0} 無効な操作により失格".format(player1["name"])
+            print "{0} 無効な操作({1})により失格".format(player1["name"],p1_oper)
             print "{0} 勝利".format(player2["name"])
             winner = 2
             break
 
         if p2_oper not in p2_card or (player1 != old_player1):
-            print "{0} 無効な操作により失格".format(player2["name"])
+            print "{0} 無効な操作({1})により失格".format(player2["name"],p2_oper)
             print "{0} 勝利".format(player1["name"])
             winner = 1
             break
@@ -153,16 +155,18 @@ if __name__ == "__main__":
 
     # プレイヤーの設定
     p1_func = human
-    p2_func = kutsu1
+    p2_func = aves
     P1_NAME = p1_func(name="name")
     P2_NAME = p2_func(name="name")
 
     # 試合をする
     result = [0, 0, 0]
-    MATCHES = 1
+    MATCHES = 10
 
     SHOW_PROGRESS = False
-    SHOW_GAME =     True
+    #SHOW_GAME =     None
+
+    SHOW_GAME = not SHOW_PROGRESS
 
     l = max([len(P1_NAME), len(P2_NAME)])
     labels = [P1_NAME.ljust(l) + ":", P2_NAME.ljust(l) +

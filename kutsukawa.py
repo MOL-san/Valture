@@ -52,7 +52,7 @@ def show_graph(log):
 def kutsu1(t=[], p={}, p2={}, name=""):
     if name:
         return "KUTSU-v1"
-
+    
     return t[-1] + 6 if t[-1] < 0 else t[-1] + 5
 
     # valture_card = {
