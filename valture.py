@@ -13,6 +13,7 @@ from attached_players import *
 from kutsukawa import kutsu1
 from aves import *
 from blockly import agent
+from enosumi import sumire
 
 
 def print_table(table, player1, player2):  # 状況表示
