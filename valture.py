@@ -48,7 +48,9 @@ def game(p1, p2, p1_name, p2_name, print_board=True):  # 本体
     for i in range(15):
         print "-------------------------------------"
         print Fore.GREEN + "Turn " + str(i + 1) + Fore.RESET
-        table.append(valtures.pop())
+        t = valtures.pop()
+        table.append(t)
+        table_f.append(t)
 
 
         print_table(table, player1, player2)
@@ -154,7 +156,7 @@ if __name__ == "__main__":
     # 統計を取る
 
     # プレイヤーの設定
-    p1_func = human
+    p1_func = sumire
     p2_func = aves
     P1_NAME = p1_func(name="name")
     P2_NAME = p2_func(name="name")
@@ -173,6 +175,7 @@ if __name__ == "__main__":
               ":", "DRAW".ljust(l) + ":"]
 
     for i in range(MATCHES):
+        table_f = []
         result[game(p1_func, p2_func,P1_NAME,P2_NAME, SHOW_GAME)[-4]] += 1
 
         if SHOW_PROGRESS:
