@@ -12,6 +12,17 @@ def sumire(table=[], player={}, player2={}, name="", table_f=[]):
 
     if len(player["card"]) == 1:
         return player["card"][0]
+    
+    if len(player["card"]) == 15:
+        t = table[0] 
+        if t <= -1:
+            return t + 7
+        elif 0 < t < 5:
+            return 1
+        elif 5 <= t < 10:
+            return t + 5
+        else:
+            return 1
 
 
     for i in table_f:
@@ -32,7 +43,9 @@ def sumire(table=[], player={}, player2={}, name="", table_f=[]):
 
 
     s1 = sum(table)
-    if s1 <= 11:
+    if s1 >= 7 and max(player["card"]) > max(player2["card"]):
+        return max(player["card"])
+    else:
         s2 = abs(s1)
         if order_list[0] > s2:
             order_list.insert(0, s2)
@@ -44,8 +57,6 @@ def sumire(table=[], player={}, player2={}, name="", table_f=[]):
                   order_list.insert(i+1, s2)
                   break
         o = order_list.index(s2)
-    else:
-        o = -1
 
     
     list1 = list(rankdata(np.array(exp_2), method = "min"))
