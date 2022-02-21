@@ -30,22 +30,38 @@ def sumire(table=[], player={}, player2={}, name="", table_f=[]):
             break
         order.remove(i)
 
-    d = np.array(order)
-    arr = np.abs(d)
-    order_list = list(arr)
-    order_list.sort()
+    
 
     for a in player["card"]:
         exp_1=[]
         for b in player2["card"]:
-            exp_1.append(abs(a - b))
+            exp_1.append(a - b)
         exp_2.append(sum(exp_1))
 
 
     s1 = sum(table)
-    if s1 >= 7 and max(player["card"]) > max(player2["card"]):
-        return max(player["card"])
+    m1 = max(player["card"])
+    m2 = max(player2["card"])
+    m3 = min(player["card"])
+    m4 = min(player2["card"])
+    if s1 >= 8 and m1 > m2:
+        return m1
+    elif s1 <= -5 and m1 > m2:
+        return m1
+    elif s1 >= 8 and m1 < m2:
+        return min(player["card"])
+    elif s1 <= -5 and m1 < m2:
+        return min(player["card"])
+    elif s1 == max(order):
+        if m1 > m2:
+            return m1
+        else:
+            return min(player["card"])
     else:
+        d = np.array(order)
+        arr = np.abs(d)
+        order_list = list(arr)
+        order_list.sort()
         s2 = abs(s1)
         if order_list[0] > s2:
             order_list.insert(0, s2)
