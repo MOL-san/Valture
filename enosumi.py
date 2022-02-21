@@ -42,8 +42,6 @@ def sumire(table=[], player={}, player2={}, name="", table_f=[]):
     s1 = sum(table)
     m1 = max(player["card"])
     m2 = max(player2["card"])
-    m3 = min(player["card"])
-    m4 = min(player2["card"])
     if s1 >= 8 and m1 > m2:
         return m1
     elif s1 <= -5 and m1 > m2:
